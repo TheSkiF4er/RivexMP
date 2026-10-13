@@ -1,0 +1,21 @@
+{
+  "name": "rivexmp-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "workspaces": ["packages/*", "apps/*"],
+  "scripts": {
+    "build": "npm run build -w @rivexmp/protocol && npm run build -w @rivexmp/sdk-js && npm run build -w @rivexmp/control-api && npm run build -w @rivexmp/console && npm run build -w @rivexmp/launcher",
+    "test": "npm run build -w @rivexmp/protocol && npm run build -w @rivexmp/sdk-js && node --test tests/*.test.mjs && npm run test -w @rivexmp/control-api",
+    "dev:api": "npm run dev -w @rivexmp/control-api",
+    "dev:console": "npm run dev -w @rivexmp/console",
+    "dev:launcher": "npm run dev -w @rivexmp/launcher",
+    "tauri:dev": "npm run tauri:dev -w @rivexmp/launcher",
+    "check:rust": "cargo fmt --all && cargo test --workspace && cargo clippy --workspace --all-targets -- -D warnings"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.8.0"
+  }
+}

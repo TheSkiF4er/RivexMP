@@ -1,0 +1,13 @@
+{
+  "name": "@rivexmp/sdk-js",
+  "version": "0.1.0",
+  "description": "JavaScript/TypeScript discovery SDK for RivexMP",
+  "type": "module",
+  "license": "Apache-2.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": { ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" } },
+  "files": ["dist", "LICENSE"],
+  "scripts": { "build": "tsc -p tsconfig.json" },
+  "dependencies": { "@rivexmp/protocol": "0.1.0" }
+}

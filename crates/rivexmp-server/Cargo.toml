@@ -1,0 +1,10 @@
+[package]
+name = "rivexmp-server"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+rivexmp-protocol = { path = "../rivexmp-protocol" }
+serde_json.workspace = true
+tokio.workspace = true

@@ -1,0 +1,17 @@
+services:
+  control-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.control-api
+    environment:
+      API_HOST: 0.0.0.0
+      API_PORT: 3001
+      ALLOWED_ORIGIN: ${ALLOWED_ORIGIN:-http://127.0.0.1:5173,http://127.0.0.1:1420}
+      RIVEX_REGISTRY_TOKEN: ${RIVEX_REGISTRY_TOKEN:?Create a strong token in .env}
+    ports:
+      - "127.0.0.1:3001:3001"
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true

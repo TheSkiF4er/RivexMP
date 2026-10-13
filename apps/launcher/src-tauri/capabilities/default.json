@@ -1,0 +1,1 @@
+{ "identifier": "default", "description": "Default launcher window permissions", "windows": ["main"], "permissions": ["core:default"] }

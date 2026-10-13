@@ -1,0 +1,19 @@
+FROM node:22-alpine AS build
+WORKDIR /app
+COPY package.json tsconfig.base.json LICENSE ./
+COPY packages/protocol ./packages/protocol
+COPY packages/sdk-js ./packages/sdk-js
+COPY apps/control-api ./apps/control-api
+RUN npm install --no-audit --no-fund
+RUN npm run build -w @rivexmp/protocol && npm run build -w @rivexmp/control-api
+
+FROM node:22-alpine
+ENV NODE_ENV=production API_HOST=0.0.0.0 API_PORT=3001
+WORKDIR /app
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/packages/protocol ./packages/protocol
+COPY --from=build /app/LICENSE ./LICENSE
+COPY --from=build /app/apps/control-api ./apps/control-api
+USER node
+EXPOSE 3001
+CMD ["node", "apps/control-api/dist/server.js"]

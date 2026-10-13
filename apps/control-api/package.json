@@ -1,0 +1,17 @@
+{
+  "name": "@rivexmp/control-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "node --env-file=../../.env --import tsx --watch src/server.ts",
+    "start": "node dist/server.js",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@rivexmp/protocol": "0.1.0",
+    "fastify": "^5.0.0"
+  },
+  "devDependencies": { "tsx": "^4.19.0" }
+}
